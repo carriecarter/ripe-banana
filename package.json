@@ -1,7 +1,7 @@
 {
-  "name": "project-name",
+  "name": "ripe-banana",
   "version": "1.0.0",
-  "description": "project description",
+  "description": "Alchemy Code Lab project",
   "main": "app.js",
   "scripts": {
     "lint": "eslint .",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://replace-with-correct-repo-link"
+    "url": "git+https://github.com/carriecarter/ripe-banana.git"
   },
-  "author": "Carrie Carter",
+  "author": "Carrie Carter & Sarah Rehmer",
   "license": "ISC",
   "bugs": {
-    "url": "https://replace-with-correct-link/issues"
+    "url": "https://github.com/carriecarter/ripe-banana.git/issues"
   },
-  "homepage": "https://replace-with-correct-link#readme",
+  "homepage": "https://github.com/carriecarter/ripe-banana.git#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
@@ -38,5 +38,9 @@
     "express": "^4.16.3",
     "mongoose": "^5.2.4",
     "morgan": "^1.9.0"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
