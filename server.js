@@ -1,12 +1,13 @@
-/* eslint no-console: off */
-require('dotenv').config();
-const { createServer } = require('http');
-require('./lib/mongodb');
+const http = require('http');
 const app = require('./lib/app');
+const connect = require('./lib/util/connect');
 
-const PORT = process.env.PORT || 3000;
-const server = createServer(app);
+connect('mongodb://localhost:27017/ripe-banana');
 
-server.listen(PORT, () => {
+const server = http.createServer(app);
+const port = process.env.port || 3000;
+
+server.listen(port, () => {
+    // eslint-disable-next-line
     console.log('server running on', server.address().port);
 });
