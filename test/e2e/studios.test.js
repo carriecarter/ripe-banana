@@ -49,4 +49,18 @@ describe('Studios API', () => {
             });
     });
 
+    it('deletes a studio', () => {
+        return request
+            .delete(`/api/studios/${lionsgate._id}`)
+            .then(checkOk)
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request.get('/api/studios');
+            })
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, []);
+            });
+
+    });
 });
