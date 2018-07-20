@@ -6,7 +6,7 @@ const { checkOk } = request;
 
 describe('Studios API', () => {
 
-    beforeEach(() => dropCollection('crews'));
+    beforeEach(() => dropCollection('studios'));
 
     function save(studio) {
         return request

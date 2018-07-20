@@ -8,7 +8,8 @@ const server = createServer(app);
 const request = chai.request(server).keepOpen();
 
 request.checkOk = res => {
-    if(res.status !== 200) throw new Error('expected 200 http status code');
+    if(res.status !== 200) 
+        throw new Error('expected 200 http status code');
     return res;
 };
 

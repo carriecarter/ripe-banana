@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-//const { getErrors } = require('./helpers');
+const { getErrors } = require('./helpers');
 const Studio = require('../../lib/models/studio');
 
 describe('Studio model', () => {
