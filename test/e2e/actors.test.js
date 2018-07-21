@@ -9,7 +9,7 @@ describe('Actors API', () => {
 
     function save(actor) {
         return request
-            .post('/api/studios')
+            .post('/api/actors')
             .send(actor)
             .then(checkOk)
             .then(({ body }) => body);
@@ -25,6 +25,14 @@ describe('Actors API', () => {
 
     it('saves an Actor', () => {
         assert.isOk(chuckNorris._id);
+    });
+
+    it('gets an actor by id', () => {
+        return request
+            .get(`/api/actors/${chuckNorris._id}`)
+            .then(({ body }) => {
+                assert.deepEqual(body, chuckNorris);
+            });
     });
 
 });
