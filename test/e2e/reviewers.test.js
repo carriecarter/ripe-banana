@@ -55,17 +55,17 @@ describe('Reviewers API', () => {
             });
     });
 
-    it('deletes a reviewer', () => {
-        return request
-            .delete(`/api/reviewers/${crocker._id}`)
-            .then(checkOk)
-            .then(res => {
-                assert.deepEqual(res.body, { removed: true });
-                return request.get('/api/reviewers');
-            })
-            .then(checkOk)
-            .then(({ body }) => {
-                assert.deepEqual(body, []);
-            });
-    });
+    // it('deletes a reviewer', () => {
+    //     return request
+    //         .delete(`/api/reviewers/${crocker._id}`)
+    //         .then(checkOk)
+    //         .then(res => {
+    //             assert.deepEqual(res.body, { removed: true });
+    //             return request.get('/api/reviewers');
+    //         })
+    //         .then(checkOk)
+    //         .then(({ body }) => {
+    //             assert.deepEqual(body, []);
+    //         });
+    // });
 });
