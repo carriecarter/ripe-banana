@@ -48,6 +48,20 @@ describe('Actors API', () => {
             });
     });
 
+    it('deletes an actor', () => {
+        return request  
+            .delete(`/api/actors/${chuckNorris._id}`)
+            .then(checkOk)
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request.get('/api/actors');
+            })
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, []);
+            });
+    });
+
 
 
 });
