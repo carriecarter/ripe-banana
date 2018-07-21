@@ -35,4 +35,19 @@ describe('Actors API', () => {
             });
     });
 
+    it('gets a list of actors', () => {
+        let billMurray;
+        return save({ name: 'Bill Murray' })
+            .then(_billMurray => {
+                billMurray = _billMurray;
+                return request.get('/api/actors');
+            })
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [chuckNorris, billMurray]);
+            });
+    });
+
+
+
 });
