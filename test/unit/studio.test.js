@@ -1,10 +1,10 @@
 const { assert } = require('chai');
-const { getErrors } = require('./helpers');
+//const { getErrors } = require('./helpers');
 const Studio = require('../../lib/models/studio');
 
 describe('Studio model', () => {
 
-    it('validates good model', () => {
+    it('validates good STUDIO model', () => {
         const data = {
             name: 'Lionsgate',
             address: {
