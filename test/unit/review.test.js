@@ -20,4 +20,13 @@ describe('Review model', () => {
         assert.deepEqual(json, data);
         assert.isUndefined(review.validateSync());
     });
+
+    it('validates required rating, reviewer, review, and film ', () => {
+        const review = new Review({});
+        const errors = getErrors(review.validateSync(), 4);
+        assert.equal(errors.rating.kind, 'required');
+        assert.equal(errors.reviewer.kind, 'required');
+        assert.equal(errors.review.kind, 'required');
+        assert.equal(errors.film.kind, 'required');
+    });
 });
