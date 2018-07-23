@@ -10,6 +10,44 @@ describe('Reviews API', () => {
     beforeEach(() => dropCollection('reviewers'));
     beforeEach(() => dropCollection('films'));
 
+
+    function save(review) {
+        return request  
+            .post('/api/reviews')
+            .send(review)
+            .then(checkOK)
+            .then(({ body }) => body);
+    }
+
+
+beforeEach(() => dropCollection('reviews'));
+
+
+function save(review) {
+    return request  
+        .post('/api/reviews')
+        .send(review)
+        .then(checkOk)
+        .then(({ body }) => body);
+}
+
+let joe;
+beforeEach(() => {
+    return save({
+        rating: 3,
+        reviewer: 'Joe',
+        review: 'this is joes first review of a movie',
+        film: 'Joe Movie'
+    })
+        .then(data => {
+            joe = data;
+        });
+});
+
+it('saves a review', () => {
+    assert.isOk(joe._id);
+});
+
     function save(reviewer) {
         return request
             .post('/api/reviewers')
@@ -54,3 +92,6 @@ describe('Reviews API', () => {
         assert.isOk(joe._id);
     });
 });
+
+
+

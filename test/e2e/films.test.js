@@ -1,8 +1,8 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-const { Types } = require('mongoose');
-const Actor = require('../../lib/models/actor');
+//const { Types } = require('mongoose');
+//const Actor = require('../../lib/models/actor');
 const { checkOk } = request;
 
 describe('Films API', () => {
@@ -20,7 +20,32 @@ describe('Films API', () => {
     let film; // film
     let foster; // actor
     let warner; // studio
+    let steinReview; // review
     //let mittens; // reviewer
+
+    function saveReview(review) {
+        return request
+            .post('/api/reviews')
+            .send(review)
+            .then(checkOk)
+            .then(({ body }) => body);
+    }
+
+    beforeEach(() => {
+        return saveReview({ 
+            rating: 5,
+            reviewer: 'Birdtrude Stein',
+            review: 'This is movie is SOOOO romantic',
+            film: 'Freddy Vs. Jason'
+
+        })
+
+            .then(data => {
+                steinReview = data;
+            });
+            
+    });
+
     
     function saveReviewer(reviewer) {
         return request
@@ -29,20 +54,17 @@ describe('Films API', () => {
             .then(checkOk)
             .then(({ body }) => body);
     }
-
-    // beforeEach(() => {
-    //     return saveReviewer({ 
-    //         name: 'Bitsy Mittens', 
-    //         company: 'Doll Factory LLC'
-    //     });
-        
-    // })
-    //     .then(data => {
-    //         mittens = data;
     
-
-    //     });
-
+    beforeEach(() => {
+        return saveReviewer({ 
+            name: 'Bitsy Mittens', 
+            company: 'Doll Factory LLC'
+        })
+        
+            .then(data => {
+                mittens = data;
+            });
+    });
 
     function saveStudio(studio) {
         return request
@@ -82,7 +104,10 @@ describe('Films API', () => {
             cast: [{
                 role: 'Dr. Eleanor "Ellie" Arroway',
                 actor: foster._id
-            }]
+            }],
+            reviews: [ 
+                steinReview
+            ]
         })
             .then(data => {
                 film = data;
