@@ -1,20 +1,13 @@
-<<<<<<< HEAD
-// const { assert } = require('chai');
-// const request = require('./request');
-// const { dropCollection } = require('./db');
-
-// const { checkOk } = request;
-=======
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 const { checkOk } = request;
->>>>>>> master
+
 
 // describe('Reviews API', () => {
-    
-<<<<<<< HEAD
+
 //     beforeEach(() => dropCollection('reviews'));
+
 
 //     function save(review) {
 //         return request  
@@ -41,8 +34,9 @@ it('saves a review', () => {
     assert.isOk(joe._id);
 });
 
-=======
+
     beforeEach(() => dropCollection('reviews'));
+
 
     function save(review) {
         return request  
@@ -68,7 +62,6 @@ it('saves a review', () => {
     it('saves a review', () => {
         assert.isOk(joe._id);
     });
->>>>>>> master
 
 
 // });
