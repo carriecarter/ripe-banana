@@ -40,4 +40,15 @@ describe('Review model', () => {
         const errors = getErrors(review.validateSync(), 1);
         assert.equal(errors.rating.kind, 'min');
     });
+
+    it('validates required max rating', () => {
+        const review = new Review({
+            rating: 10,
+            reviewer: Types.ObjectId(),
+            review: 'omg doggos are the best and so is this movie',
+            film: Types.ObjectId()
+        }); 
+        const errors = getErrors(review.validateSync(), 1);
+        assert.equal(errors.rating.kind, 'max');
+    });
 });
