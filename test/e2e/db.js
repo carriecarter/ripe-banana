@@ -14,3 +14,13 @@ module.exports = {
             });
     }
 };
+
+// repetitive drop collections vs drop db
+// module.exports = {
+//     dropDatabase() {
+//         return mongoose.connection.dropDatabase()
+//             .catch(err => {
+//                 throw err;
+//             });
+//     }
+//};
