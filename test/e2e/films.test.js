@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-const Actor = require('../../lib/models/actors');
+const Actor = require('../../lib/models/actor');
 const { checkOk } = request;
 
 describe('Films API', () => {
