@@ -16,17 +16,23 @@
 //             .then(({ body }) => body);
 //     }
 
-//     let joe;
-//     beforeEach(() => {
-//         return save({
-//             name: 'Joe Schmo',
-//             company: 'reviewsRus'
-//         })
-//             .then(data => {
-//                 joe = data;
-//             });
-//     });
+    let joe;
+    beforeEach(() => {
+        return save({
+            rating: 3,
+            reviewer: 'Joe Schmo',
+            review: 'this is joes first review of a movie',
+            film: 'Joe Dirt'
+        })
+            .then(data => {
+                joe = data;
+            });
+    });
 
-//     it()
+    it('saves a review', () => {
+        assert.isOk(joe._id);
+    });
+
+   
 
 // });
