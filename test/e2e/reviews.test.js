@@ -1,7 +1,6 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-
 const { checkOk } = request;
 
 describe('Reviews API', () => {
@@ -12,7 +11,7 @@ describe('Reviews API', () => {
         return request  
             .post('/api/reviews')
             .send(review)
-            .then(checkOK)
+            .then(checkOk)
             .then(({ body }) => body);
     }
 
@@ -20,9 +19,9 @@ describe('Reviews API', () => {
     beforeEach(() => {
         return save({
             rating: 3,
-            reviewer: 'Joe Schmo',
+            reviewer: 'Joe',
             review: 'this is joes first review of a movie',
-            film: 'Joe Dirt'
+            film: 'Joe Movie'
         })
             .then(data => {
                 joe = data;
