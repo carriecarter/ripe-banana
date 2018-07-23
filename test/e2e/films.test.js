@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 const { Types } = require('mongoose');
-//const Actor = require('../../lib/models/actor');
+const Actor = require('../../lib/models/actor');
 const { checkOk } = request;
 
 describe('Films API', () => {
@@ -17,10 +17,48 @@ describe('Films API', () => {
             .then(({ body }) => body);
     }
 
-    let film;
+    let film; // film
+    let foster; // actor
+    let warner; // studio
+    //let mittens; // reviewer
+    
+    function saveReviewer(reviewer) {
+        return request
+            .post('/api/reviewers')
+            .send(reviewer)
+            .then(checkOk)
+            .then(({ body }) => body);
+    }
 
-    let foster;
+    // beforeEach(() => {
+    //     return saveReviewer({ 
+    //         name: 'Bitsy Mittens', 
+    //         company: 'Doll Factory LLC'
+    //     });
+        
+    // })
+    //     .then(data => {
+    //         mittens = data;
+    
 
+    //     });
+
+
+    function saveStudio(studio) {
+        return request
+            .post('/api/studios')
+            .send(studio)
+            .then(checkOk)
+            .then(({ body }) => body);
+    }
+
+    beforeEach(() => {
+        return saveStudio({ name: 'Warner Bros.' })
+            .then(data => {
+                warner = data;
+            });
+    });
+    // 
     function saveActor(actor) {
         return request
             .post('/api/actors')
@@ -34,11 +72,12 @@ describe('Films API', () => {
                 foster = data;
             });
     });
-    
+   
+    //
     beforeEach(() => {
         return save({ 
             title: 'Contact',
-            studio: 'Warner Bros.',
+            studio: warner._id,
             released: 1997,
             cast: [{
                 role: 'Dr. Eleanor "Ellie" Arroway',
@@ -55,8 +94,12 @@ describe('Films API', () => {
         assert.isOk(film._id);
     });
 
-    // it('gets a film by id', () => {
-    //     return request
-    //         .get(`/api/films/$`)
-    // })
+    it('gets a film by id', () => {
+        return request
+            .get(`/api/films/${film._id}`)
+            .then(checkOk)
+            .then (({ body }) => {
+                assert.deepEqual(body, film);
+            });
+    });
 });
