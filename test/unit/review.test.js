@@ -51,4 +51,15 @@ describe('Review model', () => {
         const errors = getErrors(review.validateSync(), 1);
         assert.equal(errors.rating.kind, 'max');
     });
+
+    it('validates review text length max', () => {
+        const review = new Review({
+            rating: 3,
+            reviewer: Types.ObjectId(),
+            review: 'doggos doing doggo things instead of kitty things is super fantastic but kitteh craziness could also be pretty rad imo. But idk who u going to trust with online movie reviews anyway and why are you so into movies about cats and or dogs. I mean, I get it cause I am here spending precious minutes pouring these sophisticated thoughts into the internets for all of you to marvel at. woof. woof woof woof woof woof woof woof woof woof woof woof woof. woof woof. woof woof. woof woof. woof ',
+            film: Types.ObjectId()
+        });
+        const errors = getErrors(review.validateSync(), 1);
+        assert.equal(errors.review.kind, 'maxlength');
+    });
 });
