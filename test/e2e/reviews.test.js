@@ -19,14 +19,20 @@ describe('Reviews API', () => {
     let joe;
     beforeEach(() => {
         return save({
-            name: 'Joe Schmo',
-            company: 'reviewsRus'
+            rating: 3,
+            reviewer: 'Joe Schmo',
+            review: 'this is joes first review of a movie',
+            film: 'Joe Dirt'
         })
             .then(data => {
                 joe = data;
             });
     });
 
-    it()
+    it('saves a review', () => {
+        assert.isOk(joe._id);
+    });
+
+    
 
 });
