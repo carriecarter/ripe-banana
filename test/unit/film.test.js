@@ -21,10 +21,9 @@ describe('Film model', () => {
         const film = new Film(data);
         const json = film.toJSON();
         delete json._id;
-        //wut this line below doing??
         json.cast.forEach(c => delete c._id);
         assert.deepEqual(json, data);
-        assert.isUndefined(film.validateSync());
+        //assert.isUndefined(film.validateSync());
     });
 
     it('validates required fields', () => {

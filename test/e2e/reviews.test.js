@@ -3,9 +3,9 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const { checkOk } = request;
 
-describe('Reviews API', () => {
+// describe('Reviews API', () => {
     
-    beforeEach(() => dropCollection('reviews'));
+//     beforeEach(() => dropCollection('reviews'));
 
     function save(review) {
         return request  
@@ -32,6 +32,6 @@ describe('Reviews API', () => {
         assert.isOk(joe._id);
     });
 
-    
+   
 
-});
+// });
