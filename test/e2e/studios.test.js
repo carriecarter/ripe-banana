@@ -57,7 +57,6 @@ describe('Studios API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
-                console.log('body', body);
                 assert.deepEqual(body, [makeSimple(lionsgate), makeSimple(mgm)]);
 
             });

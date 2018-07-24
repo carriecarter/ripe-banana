@@ -27,6 +27,8 @@ describe('Actors API', () => {
             _id: actor._id,
             name: actor.name
         };
+        if(actor.dob){simple.dob = actor.dob;}
+        if(actor.pob){simple.pob = actor.pob;}
         return simple;
     };
 
@@ -51,7 +53,7 @@ describe('Actors API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body, [makeSimple(chuckNorris), makeSimple(billMurray)]);
+                assert.deepEqual(body, [chuckNorris, billMurray]);
             });
     });
 
