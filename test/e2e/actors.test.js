@@ -1,10 +1,10 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-
 const { checkOk } = request;
 
 describe('Actors API', () => {
+
     beforeEach(() => dropCollection('actors'));
 
     function save(actor) {
@@ -22,6 +22,13 @@ describe('Actors API', () => {
                 chuckNorris = data;
             });
     });
+    const makeSimple = (actor) => {
+        const simple = {
+            _id: actor._id,
+            name: actor.name
+        };
+        return simple;
+    };
 
     it('saves an Actor', () => {
         assert.isOk(chuckNorris._id);
@@ -44,7 +51,7 @@ describe('Actors API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
-                assert.deepEqual(body, [chuckNorris, billMurray]);
+                assert.deepEqual(body, [makeSimple(chuckNorris), makeSimple(billMurray)]);
             });
     });
 

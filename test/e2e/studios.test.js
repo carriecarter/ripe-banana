@@ -24,7 +24,7 @@ describe.only('Studios API', () => {
                 state: 'OR',
                 country: 'USA'
             }
-         })
+        })
             .then(data => {
                 lionsgate = data;
             });
