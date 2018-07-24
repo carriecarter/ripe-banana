@@ -39,7 +39,13 @@ describe('Actors API', () => {
     it('gets an actor by id', () => {
         return request
             .get(`/api/actors/${chuckNorris._id}`)
+            .then(checkOk)
             .then(({ body }) => {
+                chuckNorris.films = [{
+                    _id: chuckNorris._id,
+                    title: chuckNorris.title,
+                    released: chuckNorris.released
+                }];
                 assert.deepEqual(body, chuckNorris);
             });
     });
