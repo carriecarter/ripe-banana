@@ -1,3 +1,4 @@
+/* eslint no-console: off */
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
@@ -32,7 +33,7 @@ describe('Studios API', () => {
             });
     });
     
-    let glitter;
+    let film;
     
     beforeEach(() => {
         return request
@@ -43,7 +44,7 @@ describe('Studios API', () => {
                 released: 2001
             })
             .then(({ body }) => {
-                glitter = body;
+                film = body;
             });
     });
     
@@ -68,20 +69,21 @@ describe('Studios API', () => {
         if(film){
             simple.films = [{
                 _id: film._id,
-                title: glitter.title
+                title: film.title
             }];
         }
         return simple;
     };
 
 
-    // it.skip('gets a studio by id', () => {
-    //     return request
-    //         .get(`/api/studios/${lionsgate._id}`)
-    //         .then(({ body }) => {
-    //             assert.deepEqual(body, lionsgate);
-    //         });
-    // });
+    it('gets a studio by id', () => {
+        return request
+            .get(`/api/studios/${kittensgate._id}`)
+            .then(({ body }) => {
+                delete body.__v;
+                assert.deepEqual(body, makeSimpleTwo(kittensgate));
+            });
+    });
 
     it('gets a list of studios', () => {
         let mgm;
