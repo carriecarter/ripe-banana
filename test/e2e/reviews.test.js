@@ -1,30 +1,30 @@
-const { assert } = require('chai');
-const request = require('./request');
-const { dropCollection } = require('./db');
+// const { assert } = require('chai');
+// const request = require('./request');
+// const { dropCollection } = require('./db');
 
-const { checkOk } = request;
+// const { checkOk } = request;
 
-let actorBob;
-let studioCool;
-let reviewerSue;
-let filmAlchemy
-let reviewA;
-let reviewB;
+// let actorBob;
+// let studioCool;
+// let reviewerSue;
+// let filmAlchemy
+// let reviewA;
+// let reviewB;
 
 
-describe('Reviews API', () => {
+// describe('Reviews API', () => {
 
-    beforeEach(() => dropCollection('reviews'));
-    beforeEach(() => dropCollection('reviewers'));
-    beforeEach(() => dropCollection('films'));
+//     beforeEach(() => dropCollection('reviews'));
+//     beforeEach(() => dropCollection('reviewers'));
+//     beforeEach(() => dropCollection('films'));
 
-    function save(review) {
-        return request  
-            .post('/api/reviews')
-            .send(review)
-            .then(checkOk)
-            .then(({ body }) => body);
-    }
+//     function save(review) {
+//         return request  
+//             .post('/api/reviews')
+//             .send(review)
+//             .then(checkOk)
+//             .then(({ body }) => body);
+//     }
 
     // beforeEach(() => {
     //     return save({
