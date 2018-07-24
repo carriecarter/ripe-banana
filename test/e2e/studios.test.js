@@ -72,6 +72,7 @@ describe('Studios API', () => {
             })
             .then(checkOk)
             .then(({ body }) => {
+
                 assert.deepEqual(body, [makeSimple(studio), makeSimple(mgm)]);
             
             });
@@ -83,6 +84,7 @@ describe('Studios API', () => {
             .then(({ body }) => {
                 delete body._v;
                 assert.deepEqual(body, (studio));
+
             });
     });
 
