@@ -1,8 +1,8 @@
 const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
-const { Types } = require('mongoose');
-const Actor = require('../../lib/models/actor');
+//const { Types } = require('mongoose');
+//const Actor = require('../../lib/models/actor');
 const { checkOk } = request;
 
 describe('Films API', () => {
@@ -20,30 +20,7 @@ describe('Films API', () => {
     let film; // film
     let foster; // actor
     let warner; // studio
-    //let mittens; // reviewer
     
-    function saveReviewer(reviewer) {
-        return request
-            .post('/api/reviewers')
-            .send(reviewer)
-            .then(checkOk)
-            .then(({ body }) => body);
-    }
-
-    // beforeEach(() => {
-    //     return saveReviewer({ 
-    //         name: 'Bitsy Mittens', 
-    //         company: 'Doll Factory LLC'
-    //     });
-        
-    // })
-    //     .then(data => {
-    //         mittens = data;
-    
-
-    //     });
-
-
     function saveStudio(studio) {
         return request
             .post('/api/studios')
@@ -94,7 +71,7 @@ describe('Films API', () => {
         assert.isOk(film._id);
     });
 
-    it('gets a film by id', () => {
+    it.skip('gets a film by id', () => {
         return request
             .get(`/api/films/${film._id}`)
             .then(checkOk)
