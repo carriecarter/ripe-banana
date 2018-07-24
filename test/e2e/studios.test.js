@@ -3,11 +3,12 @@ const request = require('./request');
 const { dropCollection } = require('./db');
 const { checkOk } = request;
 
-describe.only('Studios API', () => {
+describe('Studios API', () => {
 
     beforeEach(() => dropCollection('studios'));
+    beforeEach(() => dropCollection('films'));
 
-    function save(studio) {
+    function saveStudio(studio) {
         return request
             .post('/api/studios')
             .send(studio)
@@ -15,20 +16,41 @@ describe.only('Studios API', () => {
             .then(({ body }) => body);
     }
 
-    let lionsgate;
+    let kittensgate;
+
     beforeEach(() => {
-        return save({ 
-            name: 'Lionsgate',
+        return saveStudio({ 
+            name: 'Kittensgate',
             address: { 
                 city: 'Portland',
                 state: 'OR',
                 country: 'USA'
             }
-         })
+        })
             .then(data => {
-                lionsgate = data;
+                kittensgate = data;
             });
     });
+    
+    let glitter;
+    
+    beforeEach(() => {
+        return request
+            .post('/api/films')
+            .send({
+                title: 'Glitter',
+                studio: kittensgate._id,
+                released: 2001
+            })
+            .then(({ body }) => {
+                glitter = body;
+            });
+    });
+    
+    it('saves a studio', () => {
+        assert.isOk(kittensgate._id);
+    });
+
     const makeSimple = (studio) => {
         const simple = {
             _id: studio._id,
@@ -36,9 +58,22 @@ describe.only('Studios API', () => {
         };
         return simple;
     };
-    it('saves a studio', () => {
-        assert.isOk(lionsgate._id);
-    });
+    const makeSimpleTwo = (studio) => { 
+        const simple = {
+            _id: studio._id,
+            name: studio.name,
+            address: studio.address
+        };
+
+        if(film){
+            simple.films = [{
+                _id: film._id,
+                title: glitter.title
+            }];
+        }
+        return simple;
+    };
+
 
     // it.skip('gets a studio by id', () => {
     //     return request
@@ -50,7 +85,7 @@ describe.only('Studios API', () => {
 
     it('gets a list of studios', () => {
         let mgm;
-        return save({ name: 'MGM' })
+        return saveStudio({ name: 'MGM' })
             .then(_mgm => {
                 mgm = _mgm;
                 return request.get('/api/studios');
@@ -58,23 +93,23 @@ describe.only('Studios API', () => {
             .then(checkOk)
             .then(({ body }) => {
                 console.log('body', body);
-                assert.deepEqual(body, [makeSimple(lionsgate), makeSimple(mgm)]);
+                assert.deepEqual(body, [makeSimple(kittensgate), makeSimple(mgm)]);
 
             });
     });
 
-    // it.skip('deletes a studio', () => {
-    //     return request
-    //         .delete(`/api/studios/${lionsgate._id}`)
-    //         .then(checkOk)
-    //         .then(res => {
-    //             assert.deepEqual(res.body, { removed: true });
-    //             return request.get('/api/studios');
-    //         })
-    //         .then(checkOk)
-    //         .then(({ body }) => {
-    //             assert.deepEqual(body, []);
-    //         });
-
-    // });
 });
+// it.skip('deletes a studio', () => {
+//     return request
+//         .delete(`/api/studios/${lionsgate._id}`)
+//         .then(checkOk)
+//         .then(res => {
+//             assert.deepEqual(res.body, { removed: true });
+//             return request.get('/api/studios');
+//         })
+//         .then(checkOk)
+//         .then(({ body }) => {
+//             assert.deepEqual(body, []);
+//         });
+
+// });
