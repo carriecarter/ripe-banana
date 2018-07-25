@@ -113,7 +113,6 @@ describe('Films API', () => {
         })
             .then(data => {
                 film = data;
-                console.log('actor thing', data);
             });
     });
 
@@ -121,7 +120,44 @@ describe('Films API', () => {
         assert.isOk(film._id);
     });
 
+    const makeSimple = (film, studio) => {
+        const simple = {
+            _id: film._id,
+            title: film.title,
+            released: film.released
+        };
+        if(studio){
+            simple.studio = {
+                _id: studio._id,
+                name: studio.name
+            };
+        }
+        return simple;
+    };
 
+    it.skip('gets all films', () => {
+        let myMovie;
+        return save({
+            title: 'Silence of the Lambs',
+            studio: warner._id,
+            released: 1991,
+            cast: [{
+                role: 'Clarice Starling',
+                actor: foster._id
+            }]
+        }) 
+            .then(_myMovie => {
+                myMovie = _myMovie;
+                return request.get('/api/films');
+            })
+            .then(checkOk)
+            .then(({ body }) => {
+                assert.deepEqual(body, [
+                    makeSimple(film, warner),
+                    makeSimple(myMovie, warner)
+                ]);
+            });
+    });
    
     it('gets a film by id', () => {
         return request
