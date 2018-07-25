@@ -111,7 +111,10 @@ describe('Reviews API', () => {
                 actor: actorBob._id
             }]
         })
-            .then(data => movieFilm = data);
+            .then(data => {
+                console.log('****** HEY', data);
+                movieFilm = data;
+            });
     });
 
 
@@ -120,7 +123,10 @@ describe('Reviews API', () => {
             .post('/api/reviews')
             .send(review)
             .then(checkOk)
-            .then(({ body }) => body);
+            .then(({ body }) => {
+                console.log('######## HEY', body);
+                body;
+            });
     }
 
     beforeEach(() => {
