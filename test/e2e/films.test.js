@@ -124,7 +124,7 @@ describe('Films API', () => {
         const simple = {
             _id: film._id,
             title: film.title,
-            released: film.released
+            released: film.released,
         };
         if(studio){
             simple.studio = {
@@ -135,7 +135,7 @@ describe('Films API', () => {
         return simple;
     };
 
-    it.skip('gets all films', () => {
+    it('gets all films', () => {
         let myMovie;
         return save({
             title: 'Silence of the Lambs',
