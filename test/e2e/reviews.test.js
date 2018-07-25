@@ -39,25 +39,25 @@ describe('Reviews API', () => {
     let reviewA;
     let reviewB;
     
-    // const bob = {
-    //     name: 'Actor Bob',
-    //     dob: new Date('1999-01-02'),
-    //     pob: 'NYC'
-    // };
+    const bob = {
+        name: 'Actor Bob',
+        dob: new Date('1999-01-02'),
+        pob: 'NYC'
+    };
     
-    // const sue = {
-    //     name: 'Reviewer Sue',
-    //     company: 'NYT'
-    // };
+    const sue = {
+        name: 'Reviewer Sue',
+        company: 'NYT'
+    };
     
-    // const cool = {
-    //     name: 'Studio Cool',
-    //     address: {
-    //         city: 'LA',
-    //         state: 'CA',
-    //         country: 'United States'
-    //     }
-    // };
+    const cool = {
+        name: 'Studio Cool',
+        address: {
+            city: 'LA',
+            state: 'CA',
+            country: 'United States'
+        }
+    };
 
     
     function saveStudio(studio) {
@@ -69,9 +69,8 @@ describe('Reviews API', () => {
     }
     beforeEach(() => {
         return saveStudio({ name: 'Studio Cool' })
-            .then(data => {
-                studioCool = data;
-            });
+            .then(data => studioCool = data);
+          
     });
 
     function saveReviewer(reviewer) {
@@ -86,9 +85,8 @@ describe('Reviews API', () => {
             name: 'Reviewer Sue', 
             company: 'NYT'
         })
-            .then(data => {
-                reviewerSue = data;
-            });
+            .then(data => reviewerSue = data);
+           
     });
 
     function saveFilm(film) {
@@ -101,11 +99,11 @@ describe('Reviews API', () => {
     beforeEach(() => {
         return saveFilm ({
             title: 'Alchemy',
-            studio: studioCool._id,
+            studio: cool._id,
             released: 1999,
             cast: [{
                 role: 'Lewis the Dog',
-                actor: actorBob._id
+                actor: bob._id
             }]
         })
             .then(data => filmAlchemy = data);
@@ -121,7 +119,7 @@ describe('Reviews API', () => {
     beforeEach(() => {
         return saveReviewA ({
             rating: 3,
-            reviewer: reviewerSue._id,
+            reviewer: sue._id,
             review: 'all the best doggos are in this',
             film: filmAlchemy._id,
             createdAt: new Date('1999-01-02')
@@ -139,7 +137,7 @@ describe('Reviews API', () => {
     beforeEach(() => {
         return saveReviewB ({
             rating: 1,
-            reviewer: reviewerSue._id,
+            reviewer: sue._id,
             review: 'well, it was alright.',
             film: filmAlchemy._id,
             createdAt: new Date('1999-01-06')
@@ -156,9 +154,7 @@ describe('Reviews API', () => {
     }
     beforeEach(() => {
         return saveActor({ name: 'Actor Bob' })
-            .then(data => {
-                actorBob = data;
-            });
+            .then(data => actorBob = data);    
     });
 
 
