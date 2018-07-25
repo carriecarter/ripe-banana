@@ -23,31 +23,6 @@ describe('Films API', () => {
     let foster; // actor
     let warner; // studio
     let reviewerCrocker; // reviewer
-    //let reviewByBob; // review
-
-    // function saveReview(review) {
-    //     return request
-    //         .post('/api/reviews')
-    //         .send(review)
-    //         .then(checkOk)
-    //         .then(({ body }) => body);
-    // }
-
-    // beforeEach(() => {
-    //     return saveReview({
-    //         rating: 4,
-    //         reviewer: 'Bob',
-    //         review: 'This is soooo good',
-    //         film: 'What About Bob'
-    //     })
-    //         .then(data => {
-    //             reviewByBob = data;
-    //         });
-    // });
-
-    // it('saves a review', () => {
-    //     assert.isOk(reviewByBob._id);
-    // });
     
     function saveReviewer(reviewer) {
         return request

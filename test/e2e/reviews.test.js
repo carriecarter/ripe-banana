@@ -20,7 +20,7 @@ const makeSimple = (review, film) => {
         };
     }
 
-    return simple;
+    return makeSimple;
 };
 
 
@@ -162,8 +162,7 @@ describe('Reviews API', () => {
                         title: movieFilm.title
                     } 
                 };
-                console.log('BODY BODY BODD', body);
-                console.log('REVIEW HEEEEEY', reviewA);
+               
                 assert.deepEqual(body[0], reviewA);
             });
     });
