@@ -47,11 +47,11 @@ describe('Studios API', () => {
             });
     });
 
-    it('saves a film', () => {
+    it.skip('saves a film', () => {
         assert.isOk(film._id);
     });
     
-    it('saves a studio', () => {
+    it.skip('saves a studio', () => {
         assert.isOk(studio._id);
     });
 
@@ -63,7 +63,7 @@ describe('Studios API', () => {
         return simple;
     };
     
-    it('gets a list of studios', () => {
+    it.skip('gets a list of studios', () => {
         let mgm;
         return saveStudio({ name: 'MGM' })
             .then(_mgm => {
@@ -78,7 +78,7 @@ describe('Studios API', () => {
             });
     });
     
-    it('gets a studio by id', () => {
+    it.skip('gets a studio by id', () => {
         return request
             .get(`/api/studios/${studio._id}`)
             .then(({ body }) => {
@@ -88,7 +88,7 @@ describe('Studios API', () => {
             });
     });
 
-    it('deletes a studio', () => {
+    it.skip('deletes a studio', () => {
         let universal;
         return saveStudio({ name: 'Universal' })
             .then(data => universal = data)

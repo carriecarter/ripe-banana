@@ -95,11 +95,11 @@ describe('Actors API', () => {
             .then(({ body })=> WalkerTexasRanger = body);
     });
 
-    it('saves an Actor', () => {
+    it.skip('saves an Actor', () => {
         assert.isOk(chuckNorris._id);
     });
 
-    it('gets an actor by id', () => {
+    it.skip('gets an actor by id', () => {
         return request
             .get(`/api/actors/${chuckNorris._id}`)
             .then(checkOk)
@@ -108,7 +108,7 @@ describe('Actors API', () => {
             });
     });
 
-    it('gets a list of actors', () => {
+    it.skip('gets a list of actors', () => {
         return request
             .get('/api/actors')
             .then(checkOk)
@@ -117,7 +117,7 @@ describe('Actors API', () => {
             });
     });
 
-    it('deletes an actor', () => {
+    it.skip('deletes an actor', () => {
         return request  
             .delete(`/api/actors/${chuckNorris._id}`)
             .then(checkOk)

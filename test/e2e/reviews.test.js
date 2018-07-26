@@ -134,11 +134,11 @@ describe('Reviews API', () => {
             .then(data => reviewA = data);
     });
 
-    it('saves a review', () => {
+    it.skip('saves a review', () => {
         assert.isOk(reviewA._id);
     });
 
-    it('gets 100 most recent reviews', () => {
+    it.skip('gets 100 most recent reviews', () => {
         return request
             .get('/api/reviews')
             .then(checkOk)

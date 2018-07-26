@@ -4,13 +4,13 @@ const Reviewer = require('../../lib/models/reviewer');
 
 describe('Reviewer model', () => {
 
-    it('validates good REVIEWER model', () => {
+    it.only('validates good REVIEWER model', () => {
         const data = {
             email: 'sue@mail.com',
             name: 'Reviewer Sue',
             company: 'Sue Reviews',
             password: 'pass123',
-            roles: []    
+            roles: ['admin']    
         };
         
         const reviewer = new Reviewer(data);
@@ -31,8 +31,5 @@ describe('Reviewer model', () => {
         assert.deepEqual(json, data);
         assert.isUndefined(reviewer.validateSync());
     }); 
-
-    it('Requires email and hash', () => {
-        // check required
-    });
+    
 });

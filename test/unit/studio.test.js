@@ -4,7 +4,7 @@ const Studio = require('../../lib/models/studio');
 
 describe('Studio model', () => {
 
-    it('validates good STUDIO model', () => {
+    it.skip('validates good STUDIO model', () => {
         const data = {
             name: 'Lionsgate',
             address: {
@@ -21,7 +21,7 @@ describe('Studio model', () => {
         assert.isUndefined(studio.validateSync());
     });
 
-    it('validates required name', () => {
+    it.skip('validates required name', () => {
         const studio = new Studio({});
         const errors = getErrors(studio.validateSync(), 1);
         assert.equal(errors.name.kind, 'required');
